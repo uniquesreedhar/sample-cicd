@@ -20,13 +20,13 @@ pipeline {
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    // Build the Docker image
-                    docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
-
-                    // Log in to Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', DOCKERHUB_CRED) {
-                        // Push the Docker image to Docker Hub
-                        docker.image("${IMAGE_NAME}:${IMAGE_TAG}").push()
+                   withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
+                sh "docker build -t ${image2}:${tag2} ."
+                sh 'echo $USER'
+                sh "echo $PASS | docker login -u $USER --password-stdin"
+                sh "docker tag ${image2}:${tag2} $USER/${image2}:${tag2}"
+                sh "docker push $USER/${image2}:${tag2}"
+                }
                     }
                 }
             }
