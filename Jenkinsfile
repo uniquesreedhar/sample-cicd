@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         // Define your Docker Hub credentials
-        DOCKERHUB_CRED = credentials('dockerhub')
+        // DOCKERHUB_CRED = credentials('dockerhub')
         // Define the Docker image name and tag
-        IMAGE_NAME = 'sreedhar8897/html-server'
+        IMAGE_NAME = 'html-server'
         IMAGE_TAG = 'latest'
     }
 
