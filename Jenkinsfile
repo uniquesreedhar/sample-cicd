@@ -21,11 +21,11 @@ pipeline {
             steps {
                 script {
                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                sh "docker build -t ${image2}:${tag2} ."
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                 sh 'echo $USER'
                 sh "echo $PASS | docker login -u $USER --password-stdin"
-                sh "docker tag ${image2}:${tag2} $USER/${image2}:${tag2}"
-                sh "docker push $USER/${image2}:${tag2}"
+                sh "docker tag ${IMAGE_NAME}:${IMAGE_TAG} $USER/${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker push $USER/${IMAGE_NAME}:${IMAGE_TAG}"
                 }
                     }
                 }
