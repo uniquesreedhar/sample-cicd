@@ -31,11 +31,11 @@ pipeline {
                 }
             }
         }
-    }
+    
 
     post {
         success {
             echo 'Image built and pushed successfully!'
         }
     }
-
+}
