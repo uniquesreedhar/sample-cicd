@@ -38,4 +38,4 @@ pipeline {
             echo 'Image built and pushed successfully!'
         }
     }
-}
+
